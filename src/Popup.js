@@ -1,19 +1,22 @@
-// Popup.js
 import React from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 
-const Popup = ({ total, onClose }) => {
+const Popup = ({ total, onClose, isVisible }) => {
   return (
     <Modal
       transparent={true}
       animationType="slide"
-      visible={true}  // Set this to the state controlling the visibility of the popup
+      visible={isVisible}
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Text style={styles.title}>Success!</Text>
-          <Text style={styles.subtitle}>You have successfully purchase 4{`\n`}products with total of ${total}.{`\n`}Click close to buy another modems</Text>
+          <Text style={styles.subtitle}>
+            You have successfully purchased 4{'\n'}
+            products with a total of ${total}{'\n'}
+            Click close to buy another modem
+          </Text>
           <TouchableOpacity
             style={styles.closeButton}
             onPress={onClose}
@@ -24,7 +27,7 @@ const Popup = ({ total, onClose }) => {
       </View>
     </Modal>
   );
-}
+};
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: 'center',
-    fontSize: 16
+    fontSize: 16,
   },
   closeButton: {
     backgroundColor: 'black',

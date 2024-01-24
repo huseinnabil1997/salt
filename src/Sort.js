@@ -3,19 +3,14 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Sort = ({ onSort }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [sortOption, setSortOption] = useState('default');
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+const Sort = ({ onSort, onToggleDropdown, dropdownOpen }) => {
+  const [sortOption, setSortOption] = useState('Default');
 
   const handleSort = (option) => {
     console.log('Sorting by:', option);
     setSortOption(option);
     onSort(option);
-    toggleDropdown();
+    onToggleDropdown();
   };
 
   return (
@@ -24,7 +19,7 @@ const Sort = ({ onSort }) => {
         <Icon name="sort" size={30} color="gray" style={{ marginRight: 10 }} />    
         <Text style={styles.sortBy}>Sort By :</Text>
       </View>
-      <TouchableOpacity onPress={toggleDropdown} style={styles.sortButton}>
+      <TouchableOpacity onPress={onToggleDropdown} style={styles.sortButton}>
         <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{sortOption}</Text>
         <Icon name={dropdownOpen ? 'keyboard-arrow-up' : 'keyboard-arrow-down'} size={30} color="gray" />
       </TouchableOpacity>
